@@ -1,5 +1,6 @@
 package br.com.bramosewerton.coffeestore_api.config;
 
+import jakarta.ws.rs.ApplicationPath;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
@@ -10,6 +11,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
 @EnableRedisRepositories
+@ApplicationPath("/rest/v1")
 public class ApiConfig {
     
 	@Bean

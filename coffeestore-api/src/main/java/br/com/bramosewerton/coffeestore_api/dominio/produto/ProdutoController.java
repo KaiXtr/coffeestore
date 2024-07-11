@@ -3,12 +3,16 @@ package br.com.bramosewerton.coffeestore_api.dominio.produto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.servlet.http.HttpServletRequest;
 
+import java.util.logging.Logger;
+
+@CrossOrigin
 @RestController
 @RequestMapping("/produtos")
 public class ProdutoController {
@@ -17,9 +21,10 @@ public class ProdutoController {
     private ProdutoService service;
 
     @GetMapping("/ping")
-    public ResponseEntity<String> getPing() {
+    public ResponseEntity getPing() {
         String resposta = "PONG!";
-        return ResponseEntity.status(HttpStatus.OK).body(resposta);
+        ResponseEntity response = ResponseEntity.status(HttpStatus.OK).body(resposta);
+        return response;
     }
 
     @GetMapping("/")
