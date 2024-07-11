@@ -23,6 +23,7 @@ public class ApiConfig {
 		template.setConnectionFactory(jedisConnectionFactory());
         template.setKeySerializer(new StringRedisSerializer());
         template.setValueSerializer(new GenericJackson2JsonRedisSerializer());
+		template.setEnableTransactionSupport(true);
 		return template;
 	}
 }

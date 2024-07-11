@@ -16,9 +16,20 @@ public class ProdutoController {
     @Autowired
     private ProdutoService service;
 
+    @GetMapping("/ping")
+    public ResponseEntity<String> getPing() {
+        String resposta = "PONG!";
+        return ResponseEntity.status(HttpStatus.OK).body(resposta);
+    }
+
     @GetMapping("/")
     public ResponseEntity getAll(HttpServletRequest request) {
         var id = request.getAttribute("id");
-        return ResponseEntity.status(HttpStatus.OK).body(service.getAllProdutos());
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(service.getAllProdutos());
+        } catch (Exception e) {
+            String resposta = "Houve um erro ao se comunicar com o Redis: " + e.getMessage();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(resposta);
+        }
     }
 }
